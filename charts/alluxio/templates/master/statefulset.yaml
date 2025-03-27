@@ -211,10 +211,6 @@ spec:
                 fieldPath: metadata.name
           {{- else if $isSingleMaster }}
           env:
-          - name: ALLUXIO_MASTER_HOSTNAME
-            valueFrom:
-              fieldRef:
-                fieldPath: status.podIP
           {{- end }}
           {{- range $key, $value := .Values.master.env }}
           - name: "{{ $key }}"
