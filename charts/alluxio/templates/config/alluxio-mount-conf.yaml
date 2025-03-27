@@ -47,6 +47,20 @@ data:
     # set the -e option, when some command return non zero, the shell will exit, no need to check the executed status.
     set -xe
 
+    # adapt to dual-stack environments 
+    # ensure that ALLUXIO_MASTER_HOSTNAME is in IPv4 format
+    for ip in $(hostname -i); do
+      if [[ $ip == *"."* ]]; then
+        export ALLUXIO_MASTER_HOSTNAME="$ip"
+        break
+      fi
+    done
+    if [ -z "${ALLUXIO_MASTER_HOSTNAME}" ]; then
+      echo "Error: No IPv4 address found."
+      exit 1
+     fi
+    echo "ipv4: ${ALLUXIO_MASTER_HOSTNAME}"
+    
     # check alluxio master ready
     alluxio fsadmin report
 
