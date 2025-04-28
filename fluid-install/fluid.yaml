@@ -976,7 +976,7 @@ spec:
                 - virtual-kubelet
       containers:
       - name: node-driver-registrar
-        image: registry.aliyuncs.com/fluid/csi-node-driver-registrar:v2.3.0
+        image: 172.22.248.235:30443/fluid/csi-node-driver-registrar:v2.3.0
         args:
           - --v=5
           - --csi-address=/var/lib/kubelet/csi-plugins/fuse.csi.fluid.io/csi.sock
@@ -999,7 +999,7 @@ spec:
           capabilities:
             add: ["SYS_ADMIN"]
           allowPrivilegeEscalation: true
-        image: registry.aliyuncs.com/fluid/fluid-csi:v1.0.4-9857af7
+        image: 172.22.248.235:30443/fluid/fluid-csi:v1.0.4-9857af7
         command: ["/usr/local/bin/entrypoint.sh"]
         args:
           - "--nodeid=$(NODE_ID)"
@@ -1112,7 +1112,7 @@ spec:
                 - virtual-kubelet
       #hostNetwork: true
       containers:
-      - image: registry.aliyuncs.com/fluid/alluxioruntime-controller:v1.0.4-9857af7
+      - image: 172.22.248.235:30443/fluid/alluxioruntime-controller:harmonycloud-v1.0.4-9857af7
         name: manager
         command: ["alluxioruntime-controller", "start"]
         args:
@@ -1127,11 +1127,11 @@ spec:
           - name: FLUID_WORKDIR
             value: "/tmp"
           - name: DEFAULT_INIT_IMAGE_ENV
-            value: registry.aliyuncs.com/fluid/init-users:v0.9.0
+            value: 172.22.248.235:30443/fluid/init-users:v0.9.0
           - name: ALLUXIO_RUNTIME_IMAGE_ENV
-            value: alluxio/alluxio-dev:2.9.0
+            value: 172.22.248.235:30443/fluid/alluxio-dev:2.9.0-2
           - name: ALLUXIO_FUSE_IMAGE_ENV
-            value: alluxio/alluxio-dev:2.9.0
+            value: 172.22.248.235:30443/fluid/alluxio-dev:2.9.0-2
           - name: MOUNT_ROOT
             value: "/runtime-mnt"
           - name: CRITICAL_FUSE_POD
@@ -1181,7 +1181,7 @@ spec:
                 - virtual-kubelet
       #hostNetwork: true
       containers:
-      - image: registry.aliyuncs.com/fluid/dataset-controller:v1.0.4-9857af7
+      - image: 172.22.248.235:30443/fluid/dataset-controller:v1.0.4-9857af7
         name: manager
         command: ["dataset-controller", "start"]
         args:
@@ -1195,7 +1195,7 @@ spec:
           - name: JINDO_ENGINE_TYPE
             value: "jindocache"
           - name: ALLUXIO_RUNTIME_IMAGE_ENV
-            value: alluxio/alluxio-dev:2.9.0
+            value: 172.22.248.235:30443/fluid/alluxio-dev:2.9.0-2
           - name: MY_POD_NAMESPACE
             valueFrom:
               fieldRef:
@@ -1241,7 +1241,7 @@ spec:
                 - virtual-kubelet
       #hostNetwork: true
       containers:
-      - image: registry.aliyuncs.com/fluid/application-controller:v1.0.4-9857af7
+      - image: 172.22.248.235:30443/fluid/application-controller:v1.0.4-9857af7
         name: manager
         command: ["fluidapp-controller", "start"]
         args:
@@ -1294,7 +1294,7 @@ spec:
                 - virtual-kubelet
       #hostNetwork: true
       containers:
-      - image: registry.aliyuncs.com/fluid/juicefsruntime-controller:v1.0.4-9857af7
+      - image: 172.22.248.235:30443/fluid/juicefsruntime-controller:v1.0.4-9857af7
         name: manager
         args:
           - --development=false
@@ -1354,7 +1354,7 @@ spec:
                 values:
                 - virtual-kubelet
       containers:
-      - image: registry.aliyuncs.com/fluid/fluid-webhook:v1.0.4-9857af7
+      - image: 172.22.248.235:30443/fluid/fluid-webhook:v1.0.4-9857af7
         name: manager
         command: ["fluid-webhook", "start"]
         args:
